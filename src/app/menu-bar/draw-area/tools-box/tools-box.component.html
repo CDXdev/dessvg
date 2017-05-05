@@ -1,0 +1,21 @@
+<p>Move :</p>
+<button (click)="this.selectedTool='translate'"type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+</button>
+<button (click)="this.selectedTool='rotate'">Rotate</button>
+<p>Draw :</p>
+<button (click)="this.selectedTool='drawLine'">Line</button>
+<i (click)="this.selectedTool='drawCircle'" class="fa fa-circle-thin" aria-hidden="true"></i>
+<button (click)="this.selectedTool='drawEllipse'">Ellipse</button>
+<button (click)="this.selectedTool='drawRect'">Rectangle</button>
+<button (click)="this.selectedTool='drawPath'">Path</button>
+<button (click)="this.selectedTool='drawPolygon'">Polygon</button>
+<button (click)="this.selectedTool='drawPolyline'">Polyline</button>
+<button (click)="this.selectedTool='drawText'">Text</button>
+<button (click)="this.selectedTool='delete'">Delete</button>
+<p>Properties :</p>
+<label>Thickness</label>
+<input [(ngModel)]="this.lineProperties.thickness" />
+<br/>
+<input id="html5colorpicker" class="colorfield regular-text" type="text" data-hex="true" value="#ff0000" name="html5colorpicker" (change)="clickColor()">
+<!-- stroking filter blurEffects dropShadows linearGradient radialGradient -->
