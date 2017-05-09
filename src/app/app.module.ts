@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { ColorPickerModule } from 'ngx-color-picker';
+
 import { AppComponent } from './app.component';
 import { ImageService } from './menu-bar/draw-area/image/image.service';
 import { ImageComponent } from './menu-bar/draw-area/image/image.component';
@@ -21,7 +23,8 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ColorPickerModule
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]

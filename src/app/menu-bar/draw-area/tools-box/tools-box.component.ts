@@ -9,13 +9,13 @@ export class ToolsBoxComponent implements OnInit {
 
   private selectedTool: string;
   public lineProperties: { thickness: string };
-  public color;
+  private color;
 
   constructor() { }
 
   ngOnInit() {
     this.selectedTool = 'translate';
-    this.lineProperties = { thickness: '1' };
+    this.lineProperties = { thickness: '10' };
   }
 
   getSelectedTool() {
@@ -26,8 +26,7 @@ export class ToolsBoxComponent implements OnInit {
     return this.lineProperties;
   }
 
-  clickColor(colorPicker) {
-    this.color = (<HTMLInputElement> document.getElementById('html5colorpicker')).value;
-    console.log(this.color.value);
+  getColor() {
+    return this.color;
   }
 }
