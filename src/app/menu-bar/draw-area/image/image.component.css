@@ -1,0 +1,7 @@
+#imageContainer {
+	border-radius: 5px;
+	border: #777 1px solid;
+	height: 45em;
+    width: auto;
+    background-image: url("/assets/grid.png");
+}

@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
-        <app-tools-box></app-tools-box>
-    </div>
-    <div class="col-md-10">
-    <app-image #image on-mouseenter="cursorOnImage=true" on-mouseleave="cursorOnImage=false">></app-image>
-    <p>X = {{this.coords[0]}}, Y = {{this.coords[1]}}</p>
-    </div>
+        <div class="col-md-1" id="divToolbox">
+        	<app-tools-box></app-tools-box>
+   		</div>
+	    <div class="col-md-11">
+		    <app-image #image on-mouseenter="cursorOnImage=true" on-mouseleave="cursorOnImage=false">></app-image>
+		    <p>X = {{this.coords[0]}}, Y = {{this.coords[1]}}</p>
+	    </div>
     </div>
 </div>
 

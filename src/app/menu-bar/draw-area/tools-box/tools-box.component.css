@@ -1,0 +1,26 @@
+input {
+	width: 80%;
+}
+
+#toolbox {
+	background-color: rgb(248, 248, 248);
+	border-radius: 5px;
+	border: #e7e7e7 1px solid;
+}
+
+button {
+	margin-top: 5px;
+}
+
+.glyphicon {
+	font-size: 14px;
+}
+
+#separator {
+	border: 1px solid #e7e7e7;
+	margin-top: 5px;
+}
+
+#center {
+	margin-left: 8px;
+}
