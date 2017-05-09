@@ -8,6 +8,9 @@ input {
 	border: #e7e7e7 1px solid;
 	display: table-cell;
 	vertical-align: middle;
+	position: absolute;
+	left: 0;
+	margin-left:20px;
 }
 
 button {
