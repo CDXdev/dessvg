@@ -13,16 +13,17 @@ export class ImageComponent {
   constructor(private imageService: ImageService) {
   }
 
-  getImage() : SVGElement{
+  getImage(): SVGElement {
     return <SVGElement>document.getElementsByTagName('svg')[0];
   }
 
-  append (element: Element){
+  append(element: Element) {
     this.getImage().appendChild(element);
   }
 
   getElementAt(coords: number[]): HTMLElement {
-    const element = <HTMLElement>document.elementFromPoint(coords[0], coords[1]);
+    const rect = this.getImage().getBoundingClientRect();
+    const element = <HTMLElement>document.elementFromPoint(coords[0] + rect.left, coords[1] + rect.top);
     if (this.isPartOfImage(element)) {
       return element;
     }
@@ -39,8 +40,8 @@ export class ImageComponent {
     return false;
   }
 
-  newImage(){
-    this.getImage().innerHTML='';
+  newImage() {
+    this.getImage().innerHTML = '';
   }
 
 }

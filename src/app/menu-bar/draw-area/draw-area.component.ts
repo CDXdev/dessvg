@@ -56,7 +56,8 @@ export class DrawAreaComponent implements OnInit {
   }
 
   updateCoords(event: MouseEvent) {
-    this.coords = [event.clientX, event.clientY];
+    const rect = this.image.getImage().getBoundingClientRect();
+    this.coords = [event.clientX - rect.left, event.clientY - rect.top];
   }
 
   actions(event: MouseEvent) {
@@ -102,6 +103,7 @@ export class DrawAreaComponent implements OnInit {
   isCursorOnImage(event: MouseEvent) {
     return this.cursorOnImage;
   }
+
   translateAction() {
     if (this.image.getElementAt(this.coords) === null) {
       return;
@@ -112,20 +114,18 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement = this.image.getElementAt(this.coords);
         this.x2 = this.coords[0];
         this.y2 = this.coords[1];
-        let transform = null;
-        if (this.selectedElement.getAttribute('transform') == null) {
-          transform = 'translate(0 0)';
-        } else {
-          transform = this.selectedElement.getAttribute('transform');
+        const transformArray: SVGTransformList = this.selectedElement.transform.baseVal;
+
+        for (let i = 0; i < transformArray.numberOfItems; i++) {
+          if (transformArray.getItem(i).type === SVGTransform.SVG_TRANSFORM_TRANSLATE) {
+            console.log(true);
+
+            break;
+          }
         }
-        transform = transform.substring(10, transform.length - 1);
-        if (transform.indexOf(',') > 0) {
-          this.coeffs = transform.split(',');
-        } else {
-          this.coeffs = transform.split(' ');
-        }
-        this.x1 = parseInt(this.coeffs[0]);
-        this.y1 = parseInt(this.coeffs[1]);
+        // TODO
+        // this.x1 = parseInt(this.coeffs[0]);
+        // this.y1 = parseInt(this.coeffs[1]);
         break;
 
       case 'mouseMove':
