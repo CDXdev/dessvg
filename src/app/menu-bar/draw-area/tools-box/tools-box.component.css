@@ -6,10 +6,25 @@ input {
 	background-color: rgb(248, 248, 248);
 	border-radius: 5px;
 	border: #e7e7e7 1px solid;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 button {
-	margin-top: 5px;
+	margin-top : 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	vertical-align: middle;
+	display: block;
+	width: 50px;
+	height: 50px;
+	padding: 0;
+}
+
+span {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .glyphicon {
@@ -21,6 +36,6 @@ button {
 	margin-top: 5px;
 }
 
-#center {
-	margin-left: 8px;
+input {
+	max-width: 25px;	
 }
