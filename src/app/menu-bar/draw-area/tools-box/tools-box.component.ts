@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolsBoxComponent implements OnInit {
 
+  private lastPressedButton: Element;
   private selectedTool: string;
   public lineProperties: { thickness: string };
   private color;
@@ -28,5 +29,14 @@ export class ToolsBoxComponent implements OnInit {
 
   getColor() {
     return this.color;
+  }
+
+  private setSelectedTool(tool: string, event: Event) {
+    this.selectedTool = tool;
+    if (!(this.lastPressedButton == null)) {
+      this.lastPressedButton.setAttribute('style', 'background: #fff');
+    }
+    this.lastPressedButton = (<Element>event.currentTarget);
+    this.lastPressedButton.setAttribute('style', 'background: #e7e7e7');
   }
 }

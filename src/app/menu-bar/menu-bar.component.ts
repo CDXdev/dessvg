@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { DrawAreaComponent } from './draw-area/draw-area.component';
 
@@ -12,7 +12,7 @@ export class MenuBarComponent implements OnInit {
   private selectedTool: string;
   public lineProperties: { thickness: string };
   public color;
-  public name: String = 'Untitled.svg';
+  public name = 'Untitled.svg';
 
   @ViewChild(DrawAreaComponent)
   private drawArea: DrawAreaComponent;
@@ -22,41 +22,39 @@ export class MenuBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  newImage(){
+  newImage() {
     this.drawArea.newImage();
     this.name = 'Untitled.svg';
   }
 
-  save(){
-    let image = document.getElementsByTagName("svg")[0].outerHTML;
-    var pom = document.createElement('a');
+  save() {
+    const image = document.getElementsByTagName('svg')[0].outerHTML;
+    const pom = document.createElement('a');
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(image));
-    pom.setAttribute('download', "svg.svg");
+    pom.setAttribute('download', this.name);
 
     if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
-    }
-    else {
-        pom.click();
+      const event = document.createEvent('MouseEvents');
+      event.initEvent('click', true, true);
+      pom.dispatchEvent(event);
+    } else {
+      pom.click();
     }
   }
 
-   open() {
-       document.getElementById("openFile").click();
-    }
+  open() {
+    document.getElementById('openFile').click();
+  }
 
-    handleFileSelect(event) {
-      var reader = new FileReader();
-      let file = event.target.files[0];
-      reader.readAsText(file);
-      this.name = file.name;
+  handleFileSelect(event) {
+    const reader = new FileReader();
+    const file = event.target.files[0];
+    reader.readAsText(file);
+    this.name = file.name;
 
-      reader.onload = function(event)
-        {
-            document.getElementById('imageContainer').innerHTML = reader.result;       
-            
-        };
-    }
+    reader.onload = function(event: Event) {
+      document.getElementById('imageContainer').innerHTML = reader.result;
+
+    };
+  }
 }
