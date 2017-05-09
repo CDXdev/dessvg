@@ -45,6 +45,8 @@ export class DrawAreaComponent implements OnInit {
     this.updateCoords(event);
     if (this.isMouseDown) {
       this.actions(event);
+    } else {
+      
     }
   }
 
@@ -62,7 +64,7 @@ export class DrawAreaComponent implements OnInit {
   actions(event: MouseEvent) {
     if (this.isCursorOnImage(event)) {
       switch (this.toolsBox.getSelectedTool()) {
-        case 'translate':
+          case 'translate':
           this.translateAction();
           break;
         case 'rotate':
@@ -74,22 +76,22 @@ export class DrawAreaComponent implements OnInit {
         case 'drawCircle':
           this.drawCircleAction();
           break;
-        case 'drawEllipse':
+          case 'drawEllipse':
           this.drawEllipseAction();
           break;
-        case 'drawRect':
+          case 'drawRect':
           this.drawRectAction();
           break;
-        case 'drawPath':
+          case 'drawPath':
           this.drawPathAction();
           break;
-        case 'drawPolygon':
+          case 'drawPolygon':
           this.drawPolygonAction();
           break;
-        case 'drawPolyline':
+          case 'drawPolyline':
           this.drawPolylineAction();
           break;
-        case 'drawText':
+          case 'drawText':
           this.drawTextAction();
           break;
         case 'delete':
@@ -186,7 +188,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('x2', this.coords[0].toString());
         this.selectedElement.setAttribute('y2', this.coords[1].toString());
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -215,7 +217,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('cy', this.y1.toString());
         this.selectedElement.setAttribute('r', '0');
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -233,7 +235,6 @@ export class DrawAreaComponent implements OnInit {
     }
 
   }
-
   drawEllipseAction() {
 
     switch (this.lastMouseEvent) {
@@ -247,7 +248,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('rx', '0');
         this.selectedElement.setAttribute('ry', '0');
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -255,8 +256,8 @@ export class DrawAreaComponent implements OnInit {
       case 'mouseMove':
         this.x2 = this.coords[0];
         this.y2 = this.coords[1];
-        const rx = (this.x1 <= this.x2) ? this.x2 - this.x1 : this.x1 - this.x2;
-        const ry = (this.y1 <= this.y2) ? this.y2 - this.y1 : this.y1 - this.y2;
+        const rx = this.x2 - this.x1;
+        const ry = this.y2 - this.y1;
         this.selectedElement.setAttribute('rx', rx.toString());
         this.selectedElement.setAttribute('ry', ry.toString());
         break;
@@ -280,7 +281,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -288,19 +289,8 @@ export class DrawAreaComponent implements OnInit {
       case 'mouseMove':
         this.x2 = this.coords[0];
         this.y2 = this.coords[1];
-        let width; let height;
-        if (this.x1 <= this.x2) {
-          width = this.x2 - this.x1;
-        } else {
-          width = this.x1 - this.x2;
-          this.selectedElement.setAttribute('x', this.x2.toString());
-        }
-        if (this.y1 <= this.y2) {
-          height = this.y2 - this.y1;
-        } else {
-          height = this.y1 - this.y2;
-          this.selectedElement.setAttribute('y', this.y2.toString());
-        }
+        const width = this.x2 - this.x1;
+        const height = this.y2 - this.y1;
         this.selectedElement.setAttribute('height', height.toString());
         this.selectedElement.setAttribute('width', width.toString());
         break;
@@ -312,7 +302,7 @@ export class DrawAreaComponent implements OnInit {
 
   }
 
-  drawPathAction() {
+drawPathAction() {
 
     switch (this.lastMouseEvent) {
 
@@ -325,7 +315,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -359,7 +349,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -393,7 +383,7 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
         this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke', 'black');
         this.image.append(this.selectedElement);
 
         break;
@@ -417,30 +407,30 @@ export class DrawAreaComponent implements OnInit {
   drawTextAction() {
 
     if (this.lastMouseEvent === 'mouseDown') {
-      this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      this.x1 = this.coords[0];
-      this.y1 = this.coords[1];
-      this.selectedElement.setAttribute('x', this.x1.toString());
-      this.selectedElement.setAttribute('y', this.y1.toString());
-      this.selectedElement.append(document.createTextNode('|'));
-      this.selectedElement.setAttribute('fill', 'black');
-      this.image.append(this.selectedElement);
-      /*@HostListener('keypress', ['$event'])
-          onMouseup(event: MouseEvent) {
-          this.lastMouseEvent = 'mouseUp';
-          this.isMouseDown = false;
-          this.actions(event);
-      }
-  switch(this.){
+        this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        this.x1 = this.coords[0];
+        this.y1 = this.coords[1];
+        this.selectedElement.setAttribute('x', this.x1.toString());
+        this.selectedElement.setAttribute('y', this.y1.toString());
+        this.selectedElement.append(document.createTextNode('|'));
+        this.selectedElement.setAttribute('fill', 'black');
+        this.image.append(this.selectedElement);
+        /*@HostListener('keypress', ['$event'])
+            onMouseup(event: MouseEvent) {
+            this.lastMouseEvent = 'mouseUp';
+            this.isMouseDown = false;
+            this.actions(event);
+        }
+    switch(this.){
 
-  }*/
+    }*/
 
 
       /*case 'mouseUp':
         this.selectedElement = null;
         break;*/
     }
-  }
+    }
 
   deleteAction() {
 
@@ -452,7 +442,7 @@ export class DrawAreaComponent implements OnInit {
     }
   }
 
-  newImage() {
+  newImage(){
     this.image.newImage();
   }
 
