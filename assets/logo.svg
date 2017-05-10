@@ -1,0 +1,9 @@
+<svg width="127" height="59" xmlns="http://www.w3.org/2000/svg">
+<ellipse ry="29" rx="63" id="svg_3" cy="29.421011" cx="63.481667" stroke-width="0" stroke="#000" fill="#1e88e5"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_1" y="29.421011" x="16.481667" stroke-width="0" stroke="#000" fill="#ffffff">SVG</text>
+  <text font-style="italic" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="16" id="svg_2" y="45.421011" x="37.481667" stroke-width="0" stroke="#000" fill="#ffffff">Drawer</text>
+  <path fill="#ffffff" stroke-width="0" stroke-opacity="null" d="m100.491377,4.570011l-3.39276,-2.359c-0.85601,-0.5946 -1.98394,-0.30842 -2.52331,0.63872l-1.33728,2.3546l6.49049,4.50963l1.33833,-2.35351c0.53733,-0.94827 0.28088,-2.19717 -0.57547,-2.79044l0,0zm-18.80319,20.97696l6.49084,4.50958l10.579,-18.63011l-6.49394,-4.51076l-10.5759,18.63129l0,0zm-0.99148,5.72959l-0.14336,4.23577l3.38755,-1.98215l3.148,-1.83872l-6.26192,-4.35328l-0.13027,3.93838l0,0l0,0z" id="svg_11" transform="rotate(-84 90.95050811767578,18.706632614135746) " stroke="#000"/>
+  <ellipse fill="#ffffff" stroke="#ffffff" cx="33.484681" cy="49.520408" id="svg_13" rx="0.677711" ry="0.677711"/>
+  <path fill="none" d="m33.894357,49.581771c48.52657,-0.15465 71.07992,-1.30871 67.53929,-7.67327c-3.54061,-6.36456 5.69291,-4.9688 5.13963,-10.96268" id="svg_12" stroke="#ffffff"/>
+  <ellipse fill="#ffffff" stroke="#ffffff" cx="106.376245" cy="31.146913" id="svg_14" rx="0.677711" ry="0.677711"/>
+  </svg>
