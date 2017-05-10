@@ -9,26 +9,15 @@ export class ToolsBoxComponent implements OnInit {
 
   private lastPressedButton: Element;
   private selectedTool: string;
-  public lineProperties: { thickness: string };
-  private color;
 
   constructor() { }
 
   ngOnInit() {
     this.selectedTool = 'translate';
-    this.lineProperties = { thickness: '10' };
   }
 
   getSelectedTool() {
     return this.selectedTool;
-  }
-
-  getLineProperties() {
-    return this.lineProperties;
-  }
-
-  getColor() {
-    return this.color;
   }
 
   private setSelectedTool(tool: string, event: Event) {

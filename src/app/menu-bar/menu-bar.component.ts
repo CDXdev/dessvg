@@ -14,6 +14,8 @@ export class MenuBarComponent implements OnInit {
   public color;
   public name = 'Untitled.svg';
 
+  public labels = { view: { showGrid: 'Hide grid' } };
+
   @ViewChild(DrawAreaComponent)
   private drawArea: DrawAreaComponent;
 
@@ -56,5 +58,14 @@ export class MenuBarComponent implements OnInit {
       document.getElementById('imageContainer').innerHTML = reader.result;
 
     };
+  }
+
+  showGrid() {
+    this.drawArea.getImageComponent().showGrid();
+    if (this.labels.view.showGrid === 'Show grid') {
+      this.labels.view.showGrid = 'Hide grid';
+    } else {
+      this.labels.view.showGrid = 'Show grid';
+    }
   }
 }

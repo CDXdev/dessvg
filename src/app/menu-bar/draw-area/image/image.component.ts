@@ -1,5 +1,5 @@
 import { ImageService } from './image.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-image',
@@ -8,7 +8,11 @@ import { Component, ViewChild } from '@angular/core';
 })
 export class ImageComponent {
 
-  loadingImage = '<h1>Loading image</h1>';
+  private loadingImage = '<h1>Loading image</h1>';
+
+  @ViewChild('imageContainer')
+  private imageContainer: ElementRef;
+  private isGridOn = true;
 
   constructor(private imageService: ImageService) {
   }
@@ -42,6 +46,16 @@ export class ImageComponent {
 
   newImage() {
     this.getImage().innerHTML = '';
+  }
+
+  showGrid() {
+    if (this.isGridOn === true) {
+      (<Element>this.imageContainer.nativeElement).setAttribute('style', 'background-image: none;');
+      this.isGridOn = false;
+    } else {
+      (<Element>this.imageContainer.nativeElement).setAttribute('style', '');
+      this.isGridOn = true;
+    }
   }
 
 }

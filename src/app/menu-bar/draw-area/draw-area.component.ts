@@ -1,4 +1,5 @@
 import { ImageComponent } from './image/image.component';
+import { PropertiesComponent } from './properties/properties.component';
 import { ToolsBoxComponent } from './tools-box/tools-box.component';
 import { Component, OnInit, ViewChild, AfterContentInit, HostListener, EventEmitter } from '@angular/core';
 
@@ -26,6 +27,9 @@ export class DrawAreaComponent implements OnInit {
 
   @ViewChild(ToolsBoxComponent)
   private toolsBox: ToolsBoxComponent;
+
+  @ViewChild(PropertiesComponent)
+  private properties: PropertiesComponent;
 
   constructor() { }
 
@@ -185,8 +189,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('y1', this.coords[1].toString());
         this.selectedElement.setAttribute('x2', this.coords[0].toString());
         this.selectedElement.setAttribute('y2', this.coords[1].toString());
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
@@ -214,8 +218,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('cx', this.x1.toString());
         this.selectedElement.setAttribute('cy', this.y1.toString());
         this.selectedElement.setAttribute('r', '0');
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
@@ -246,8 +250,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('cy', this.y1.toString());
         this.selectedElement.setAttribute('rx', '0');
         this.selectedElement.setAttribute('ry', '0');
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
@@ -279,8 +283,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('y', this.y1.toString());
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
@@ -324,8 +328,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('y', this.y1.toString());
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
@@ -358,8 +362,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('y', this.y1.toString());
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
@@ -392,8 +396,8 @@ export class DrawAreaComponent implements OnInit {
         this.selectedElement.setAttribute('y', this.y1.toString());
         this.selectedElement.setAttribute('width', '0');
         this.selectedElement.setAttribute('height', '0');
-        this.selectedElement.setAttribute('stroke-width', this.toolsBox.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.toolsBox.getColor());
+        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+        this.selectedElement.setAttribute('stroke', this.properties.getColor());
         this.image.append(this.selectedElement);
 
         break;
