@@ -1,5 +1,9 @@
 # VCSdrawer
 
+VCSdrawer is an open source SVG Drawing application. Currently a web app, we plan to port our work on smartphones and Windows/Linux/MacOS.
+
+#Angular CLI
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
