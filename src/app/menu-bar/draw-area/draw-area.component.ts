@@ -45,6 +45,11 @@ export class DrawAreaComponent implements OnInit {
   ngOnInit() {
   }
 
+  @HostListener('document:keydown', ['$event'])
+  onKeyPressed(event: KeyboardEvent) {
+    console.log(event.key);
+  }
+
   @HostListener('mouseup', ['$event'])
   onMouseup(event: MouseEvent) {
     if (this.getImageComponent().isImageShown()) {
