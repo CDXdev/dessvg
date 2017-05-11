@@ -18,9 +18,9 @@ export class DrawAreaComponent implements OnInit {
   private y1: number;
   private x2: number;
   private y2: number;
-  private coeffs: any;
   private oldValue;
   private selectedElement = null;
+  private selectedTransform: SVGTransform;
 
   @ViewChild(ImageComponent)
   private image: ImageComponent;
@@ -30,6 +30,14 @@ export class DrawAreaComponent implements OnInit {
 
   @ViewChild(PropertiesComponent)
   private properties: PropertiesComponent;
+
+  private initPointerY: number;
+  private initPointerX: number;
+  private initTranslateX: number;
+  private initTranslateY: number;
+  private initRotateX: number;
+  private initRotateY: number;
+  private initAngle: number;
 
   constructor() {
   }
@@ -116,39 +124,40 @@ export class DrawAreaComponent implements OnInit {
   }
 
   translateAction() {
-    if (this.image.getElementAt(this.coords) === null) {
-      return;
-    }
     switch (this.lastMouseEvent) {
 
       case 'mouseDown':
+        if (this.image.getElementAt(this.coords) === null) {
+          break;
+        }
         this.selectedElement = this.image.getElementAt(this.coords);
-        this.x2 = this.coords[0];
-        this.y2 = this.coords[1];
+        this.initPointerX = this.coords[0];
+        this.initPointerY = this.coords[1];
         const transformArray: SVGTransformList = this.selectedElement.transform.baseVal;
-
+        let createNewTranslate = true;
         for (let i = 0; i < transformArray.numberOfItems; i++) {
           if (transformArray.getItem(i).type === SVGTransform.SVG_TRANSFORM_TRANSLATE) {
-            console.log(true);
-
+            createNewTranslate = false;
+            this.selectedTransform = transformArray.getItem(i);
+            this.initTranslateX = this.selectedTransform.matrix.e;
+            this.initTranslateY = this.selectedTransform.matrix.f;
             break;
           }
         }
-        // TODO
-        // this.x1 = parseInt(this.coeffs[0]);
-        // this.y1 = parseInt(this.coeffs[1]);
+        if (createNewTranslate === true) {
+          this.selectedTransform = this.image.getImage().createSVGTransform();
+          this.initTranslateX = 0;
+          this.initTranslateY = 0;
+          this.selectedTransform.setTranslate(0, 0);
+          transformArray.appendItem(this.selectedTransform);
+        }
         break;
 
       case 'mouseMove':
         if (this.selectedElement == null) {
           break;
         }
-        const x = this.coords[0];
-        const y = this.coords[1];
-        this.coeffs[0] = x + this.x1 - this.x2;
-        this.coeffs[1] = y + this.y1 - this.y2;
-        const chaine = 'translate(' + this.coeffs.join(' ') + ')';
-        this.selectedElement.setAttribute('transform', chaine);
+        this.selectedTransform.setTranslate(this.coords[0] - this.initPointerX + this.initTranslateX, this.coords[1] - this.initPointerY + this.initTranslateY);
         break;
 
       case 'mouseUp':
@@ -158,30 +167,32 @@ export class DrawAreaComponent implements OnInit {
   }
 
   rotateAction() {
-
     switch (this.lastMouseEvent) {
 
       case 'mouseDown':
-        this.selectedElement = this.image.getElementAt(this.coords);
-        if (!(this.selectedElement.getAttribute('transform') == null)) {
-          this.oldValue = this.selectedElement.getAttribute('transform');
-        } else {
-          this.oldValue = '';
+        if (this.image.getElementAt(this.coords) === null) {
+          break;
         }
-        this.x1 = this.coords[0];
-        this.y1 = this.coords[1];
+        this.selectedElement = this.image.getElementAt(this.coords);
+        this.initPointerX = this.coords[0];
+        this.initPointerY = this.coords[1];
+        const transformArray: SVGTransformList = this.selectedElement.transform.baseVal;
+        this.selectedTransform = this.image.getImage().createSVGTransform();
+        this.initAngle = 0;
+        this.initRotateX = this.coords[0];
+        this.initRotateY = this.coords[1];
+        this.selectedTransform.setRotate(0, this.coords[0], this.coords[1]);
+        transformArray.appendItem(this.selectedTransform);
         break;
 
       case 'mouseMove':
-        this.x2 = this.coords[0];
-        this.y2 = this.coords[1];
-        const value = Math.sqrt(Math.pow(this.x2 - this.x1, 2) + Math.pow(this.y2 - this.y1, 2));
-        const rotate = this.oldValue + 'rotate(' + value + ' ' + this.x1 + ' ' + this.y1 + ' )';
-        this.selectedElement.setAttribute('transform', rotate);
+        if (this.selectedElement == null) {
+          break;
+        }
+        this.selectedTransform.setRotate(Math.sqrt(Math.pow(this.coords[0] - this.initPointerX, 2) + Math.pow(this.coords[1] - this.initPointerY, 2)), this.initRotateX, this.initRotateY);
         break;
 
       case 'mouseUp':
-        this.selectedElement = null;
         break;
     }
   }

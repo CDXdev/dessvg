@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
+import {Component, AfterViewInit} from '@angular/core';
 
 declare var ace: any;
 declare var vkbeautify: any;
@@ -8,20 +8,27 @@ declare var vkbeautify: any;
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.css']
 })
-export class ImageComponent {
+export class ImageComponent implements AfterViewInit{
 
   private isXmlShown = false;
   private isGridOn = true;
+  private image: SVGSVGElement;
 
   constructor() {
+  }
+
+  ngAfterViewInit() {
+    this.image = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    this.image.setAttribute("id","image");
+    this.getImageContainer().appendChild(this.image);
   }
 
   isImageShown() {
     return !this.isXmlShown;
   }
 
-  getImage(): Element {
-    return document.getElementById("image");
+  getImage(): SVGSVGElement {
+    return this.image;
   }
 
   getImageContainer(): Element {
