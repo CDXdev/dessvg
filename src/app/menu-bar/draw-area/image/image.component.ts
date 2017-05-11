@@ -21,6 +21,7 @@ export class ImageComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.image = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     this.image.setAttribute("id", "image");
+    this.image.setAttribute("xmlns","http://www.w3.org/2000/svg");
     this.selection = document.createElementNS("http://www.w3.org/2000/svg", "g");
     this.selection.setAttribute("id", "selection");
     this.image.appendChild(this.selection);

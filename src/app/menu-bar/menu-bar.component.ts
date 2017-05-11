@@ -29,10 +29,10 @@ export class MenuBarComponent implements OnInit {
   }
 
   save() {
-    const image = this.drawArea.getImageComponent().getImage().outerHTML;
-    console.log(image);
+    this.drawArea.deleteSelectedElement();
+    const image: SVGSVGElement = this.drawArea.getImageComponent().getImage();
     const pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(image));
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(image.outerHTML));
     pom.setAttribute('download', this.name);
 
     if (document.createEvent) {

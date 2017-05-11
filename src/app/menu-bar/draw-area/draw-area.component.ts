@@ -465,7 +465,6 @@ export class DrawAreaComponent implements OnInit {
           break;
       }
     }
-    console.log(event);
     if (event instanceof KeyboardEvent && event.key === 'Escape') {
       this.selectedElement = null;
     }
