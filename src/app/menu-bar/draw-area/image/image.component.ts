@@ -14,6 +14,7 @@ export class ImageComponent implements AfterViewInit {
   private isGridOn = true;
   private image: SVGSVGElement;
   private selection: SVGGraphicsElement;
+  private savedSelectionElement: string;
 
   constructor() {
   }
@@ -87,15 +88,20 @@ export class ImageComponent implements AfterViewInit {
 
   showXml() {
     var editor = ace.edit("editor");
-
     if (this.isXmlShown === false) {
+      document.getElementById('selection').outerHTML = '';
       this.isXmlShown = true;
       editor.setTheme("ace/theme/dreamweaver");
       editor.getSession().setMode("ace/mode/html");
+      this.deleteSelectedElement();
       editor.setValue(vkbeautify.xml(this.getImage().innerHTML));
     }
     else {
+      this.selection = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      this.selection.setAttribute("id", "selection");
+      this.image.appendChild(this.selection);
       this.isXmlShown = false;
+      //this.getImage().getElementById('selection').outerHTML = this.savedSelectionElement;
       this.getImage().innerHTML = editor.getValue();
     }
 
@@ -109,6 +115,11 @@ export class ImageComponent implements AfterViewInit {
   }
 
   createSelectionRect(elementX: number, elementY: number, elementW: number, elementH: number) {
+    if(document.getElementById('selection') === null){
+      this.selection = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      this.selection.setAttribute("id", "selection");
+      this.image.appendChild(this.selection);
+    }
     let x = elementX - 5;
     let y = elementY - 5;
     let w = elementW + 10;
@@ -174,7 +185,9 @@ export class ImageComponent implements AfterViewInit {
   }
 
   deleteSelectedElement(){
-    this.getSelection().innerHTML = "";
+    if(document.getElementById('selection') != null) {
+      document.getElementById('selection').innerHTML = "";
+    }
   }
 
   selectionAppend(element: SVGElement) {
