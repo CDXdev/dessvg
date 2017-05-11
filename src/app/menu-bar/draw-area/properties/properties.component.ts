@@ -13,7 +13,7 @@ export class PropertiesComponent implements OnInit {
   public fontProperties: { size: string };
 
   constructor() {
-    this.lineProperties = { thickness: '10' };
+    this.lineProperties = { thickness: '5' };
     this.color = '#000';
     this.colorStroke = '#f00';
     this.fontProperties =  { size: '30'};
