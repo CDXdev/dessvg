@@ -348,26 +348,24 @@ export class DrawAreaComponent implements OnInit {
     switch (this.lastMouseEvent) {
 
       case 'mouseDown':
-        this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         this.x1 = this.coords[0];
         this.y1 = this.coords[1];
-        this.selectedElement.setAttribute('x', this.x1.toString());
-        this.selectedElement.setAttribute('y', this.y1.toString());
-        this.selectedElement.setAttribute('width', '0');
-        this.selectedElement.setAttribute('height', '0');
+        this.selectedElement.setAttribute('d', 'M' + this.x1 + ',' + this.y1 + ' C ' + this.x1 + ',' + this.y1);
         this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
         this.selectedElement.setAttribute('stroke', this.properties.getColor());
+        this.selectedElement.setAttribute('fill', 'none');
         this.image.append(this.selectedElement);
 
         break;
 
       case 'mouseMove':
-        this.x2 = this.coords[0];
-        this.y2 = this.coords[1];
-        const width = this.x2 - this.x1;
-        const height = this.y2 - this.y1;
-        this.selectedElement.setAttribute('height', height.toString());
-        this.selectedElement.setAttribute('width', width.toString());
+        let theD = this.selectedElement.getAttribute('d');
+        const posL = theD.indexOf('L');
+        if ((posL !== -1)) {
+          theD = theD.substring(0, posL) + theD.substring(posL + 2);
+        }
+        this.selectedElement.setAttribute('d', theD + ' L ' + this.coords[0] + ',' + this.coords[1]);
         break;
 
       case 'mouseUp':
