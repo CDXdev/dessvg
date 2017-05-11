@@ -44,6 +44,32 @@ export class MenuBarComponent implements OnInit {
     }
   }
 
+  xml() {
+    const smoke = document.createElement('div');
+    smoke.setAttribute('style', 'z-index:2;position:static;margin:0;width:100%;height:100%;background-color:rgba(0,0,0,0.2);text-align:center;');
+    smoke.onclick = function(){this.parentNode.removeChild(this); };
+    const text = document.createElement('textarea');
+    text.setAttribute('style', 'position:static;width:50%;height:70%;margin-top:20px;');
+    const ok = document.createElement('button');
+    ok.innerHTML = 'OK';
+    ok.style.display = 'block';
+    ok.style.margin = 'auto';
+    ok.onclick = function(){
+      // remplacer svg tag du dom
+      smoke.parentNode.removeChild(smoke);
+    };
+    const cp = document.createElement('button');
+    cp.innerHTML = 'Copier';
+    cp.style.display = 'block';
+    cp.style.margin = 'auto';
+    cp.onclick = function(){
+      // copie
+    };
+    smoke.appendChild(text).appendChild(document.createTextNode(document.getElementsByTagName('svg')[0].outerHTML.toString()));
+    smoke.appendChild(ok);
+    document.getElementsByTagName('body')[0].appendChild(smoke);
+  }
+
   open() {
     document.getElementById('openFile').click();
   }
