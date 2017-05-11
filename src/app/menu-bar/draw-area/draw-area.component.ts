@@ -38,6 +38,7 @@ export class DrawAreaComponent implements OnInit {
   private initRotateX: number;
   private initRotateY: number;
   private initAngle: number;
+  private isDrawing = false;
 
   constructor() {
   }
@@ -115,9 +116,9 @@ export class DrawAreaComponent implements OnInit {
         }
       }
       switch (this.toolsBox.getSelectedTool()) {
-          case 'drawPolygon':
-            this.drawPolygonAction(event);
-            break;
+        case 'drawPolygon':
+          this.drawPolygonAction(event);
+          break;
         case 'drawPolyline':
           this.drawPolylineAction(event);
           break;
@@ -400,62 +401,20 @@ export class DrawAreaComponent implements OnInit {
 
   drawPolygonAction(event: Event) {
     if (event instanceof MouseEvent) {
-    switch (event.type) {
-
-      case 'mousedown':
-        if (this.selectedElement === null) {
-          this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-          this.x1 = this.coords[0];
-          this.y1 = this.coords[1];
-          this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
-          this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
-          this.selectedElement.setAttribute('stroke', this.properties.getColorStroke());
-          this.selectedElement.setAttribute('fill', this.properties.getColor());
-          this.image.append(this.selectedElement);
-        }
-        break;
-
-      case 'mousemove':
-        if (this.selectedElement !== null) {
-          let thePoints = this.selectedElement.getAttribute('points');
-          const posSpace = thePoints.lastIndexOf(' ');
-          if ((posSpace !== -1)) {
-            thePoints = thePoints.substring(0, posSpace);
-          }
-          this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
-        }
-        break;
-
-      case 'mouseup':
-        this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + ' ' + this.coords[0] + ',' + this.coords[1]);
-        break;
-    }
-      }
-
-    if (event instanceof KeyboardEvent && event.key === 'Escape') {
-      let thePoints = this.selectedElement.getAttribute('points');
-      thePoints = thePoints.substring(0, thePoints.lastIndexOf(' '));
-      this.selectedElement.setAttribute('points', thePoints);
-      this.selectedElement = null;
-    }
-
-  }
-
-  drawPolylineAction(event: Event) {
-    if (event instanceof MouseEvent) {
       switch (event.type) {
 
         case 'mousedown':
-          if (this.selectedElement === null) {
-            this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+          if (this.isDrawing === false) {
+            this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
             this.x1 = this.coords[0];
             this.y1 = this.coords[1];
             this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
             this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
-            this.selectedElement.setAttribute('stroke', this.properties.getColor());
-            this.selectedElement.setAttribute('fill', 'none');
+            this.selectedElement.setAttribute('stroke', this.properties.getColorStroke());
+            this.selectedElement.setAttribute('fill', this.properties.getColor());
             this.image.append(this.selectedElement);
           }
+          this.isDrawing = true;
           break;
 
         case 'mousemove':
@@ -474,12 +433,58 @@ export class DrawAreaComponent implements OnInit {
           break;
       }
     }
-	
+
     if (event instanceof KeyboardEvent && event.key === 'Escape') {
       let thePoints = this.selectedElement.getAttribute('points');
       thePoints = thePoints.substring(0, thePoints.lastIndexOf(' '));
       this.selectedElement.setAttribute('points', thePoints);
       this.selectedElement = null;
+      this.isDrawing = false;
+    }
+
+  }
+
+  drawPolylineAction(event: Event) {
+    if (event instanceof MouseEvent) {
+      switch (event.type) {
+
+        case 'mousedown':
+          if (this.isDrawing === false) {
+            this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+            this.x1 = this.coords[0];
+            this.y1 = this.coords[1];
+            this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
+            this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+            this.selectedElement.setAttribute('stroke', this.properties.getColor());
+            this.selectedElement.setAttribute('fill', 'none');
+            this.image.append(this.selectedElement);
+          }
+          this.isDrawing = true;
+          break;
+
+        case 'mousemove':
+          if (this.selectedElement !== null) {
+            let thePoints = this.selectedElement.getAttribute('points');
+            const posSpace = thePoints.lastIndexOf(' ');
+            if ((posSpace !== -1)) {
+              thePoints = thePoints.substring(0, posSpace);
+            }
+            this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
+          }
+          break;
+
+        case 'mouseup':
+          this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + ' ' + this.coords[0] + ',' + this.coords[1]);
+          break;
+      }
+    }
+
+    if (event instanceof KeyboardEvent && event.key === 'Escape') {
+      let thePoints = this.selectedElement.getAttribute('points');
+      thePoints = thePoints.substring(0, thePoints.lastIndexOf(' '));
+      this.selectedElement.setAttribute('points', thePoints);
+      this.selectedElement = null;
+      this.isDrawing = false;
     }
 
 
