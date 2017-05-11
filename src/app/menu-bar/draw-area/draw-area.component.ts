@@ -19,7 +19,6 @@ export class DrawAreaComponent implements OnInit {
   private y1: number;
   private x2: number;
   private y2: number;
-  private oldValue;
   private selectedElement = null;
   private selectedTransform: SVGTransform;
 
@@ -130,14 +129,27 @@ export class DrawAreaComponent implements OnInit {
     return this.cursorOnImage;
   }
 
+  setSelectedElement() {
+    this.selectedElement = this.image.getElementAt(this.coords);
+    this.getImageComponent().setSelectedElement(this.selectedElement);
+  }
+
+  updateSelectedElement() {
+    this.getImageComponent().updateSelectedElement(this.selectedElement);
+  }
+
+  deleteSelectedElement() {
+    this.getImageComponent().deleteSelectedElement();
+  }
+
   translateAction() {
     switch (this.lastMouseEvent) {
-
       case 'mouseDown':
         if (this.image.getElementAt(this.coords) === null) {
+          this.deleteSelectedElement();
           break;
         }
-        this.selectedElement = this.image.getElementAt(this.coords);
+        this.setSelectedElement();
         this.initPointerX = this.coords[0];
         this.initPointerY = this.coords[1];
         const transformArray: SVGTransformList = this.selectedElement.transform.baseVal;
@@ -164,6 +176,7 @@ export class DrawAreaComponent implements OnInit {
         if (this.selectedElement == null) {
           break;
         }
+        this.updateSelectedElement();
         this.selectedTransform.setTranslate(this.coords[0] - this.initPointerX + this.initTranslateX, this.coords[1] - this.initPointerY + this.initTranslateY);
         break;
 
@@ -180,7 +193,7 @@ export class DrawAreaComponent implements OnInit {
         if (this.image.getElementAt(this.coords) === null) {
           break;
         }
-        this.selectedElement = this.image.getElementAt(this.coords);
+        this.setSelectedElement();
         this.initPointerX = this.coords[0];
         this.initPointerY = this.coords[1];
         const transformArray: SVGTransformList = this.selectedElement.transform.baseVal;
