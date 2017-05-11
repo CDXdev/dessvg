@@ -86,7 +86,7 @@ export class DrawAreaComponent implements OnInit {
 
   actions(event: Event) {
     if (this.isCursorOnImage(event)) {
-      if(this.isMouseDown===true) {
+      if (this.isMouseDown === true) {
         switch (this.toolsBox.getSelectedTool()) {
           case 'translate':
             this.translateAction();
