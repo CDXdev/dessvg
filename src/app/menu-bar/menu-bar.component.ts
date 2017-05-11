@@ -29,7 +29,8 @@ export class MenuBarComponent implements OnInit {
   }
 
   save() {
-    const image = document.getElementsByTagName('svg')[0].outerHTML;
+    const image = this.drawArea.getImageComponent().getImage().outerHTML;
+    console.log(image);
     const pom = document.createElement('a');
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(image));
     pom.setAttribute('download', this.name);
