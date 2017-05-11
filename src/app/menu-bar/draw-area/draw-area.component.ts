@@ -1,7 +1,7 @@
-import { ImageComponent } from './image/image.component';
-import { PropertiesComponent } from './properties/properties.component';
-import { ToolsBoxComponent } from './tools-box/tools-box.component';
-import { Component, OnInit, ViewChild, AfterContentInit, HostListener, EventEmitter } from '@angular/core';
+import {ImageComponent} from './image/image.component';
+import {PropertiesComponent} from './properties/properties.component';
+import {ToolsBoxComponent} from './tools-box/tools-box.component';
+import {Component, OnInit, ViewChild, AfterContentInit, HostListener, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-draw-area',
@@ -31,36 +31,43 @@ export class DrawAreaComponent implements OnInit {
   @ViewChild(PropertiesComponent)
   private properties: PropertiesComponent;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   @HostListener('mouseup', ['$event'])
   onMouseup(event: MouseEvent) {
-    this.lastMouseEvent = 'mouseUp';
-    this.isMouseDown = false;
-    this.actions(event);
+    if (this.getImageComponent().isImageShown()) {
+      this.lastMouseEvent = 'mouseUp';
+      this.isMouseDown = false;
+      this.actions(event);
+    }
   }
 
   @HostListener('mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
-    this.lastMouseEvent = 'mouseMove';
-    this.updateCoords(event);
-    if (this.isMouseDown) {
-      this.actions(event);
+    if (this.getImageComponent().isImageShown()) {
+      this.lastMouseEvent = 'mouseMove';
+      this.updateCoords(event);
+      if (this.isMouseDown) {
+        this.actions(event);
+      }
     }
   }
 
   @HostListener('mousedown', ['$event'])
   onMouseDown(event) {
-    this.lastMouseEvent = 'mouseDown';
-    this.isMouseDown = true;
-    this.actions(event);
+    if (this.getImageComponent().isImageShown()) {
+      this.lastMouseEvent = 'mouseDown';
+      this.isMouseDown = true;
+      this.actions(event);
+    }
   }
 
   updateCoords(event: MouseEvent) {
-    const rect = this.image.getImage().getBoundingClientRect();
+    const rect = this.image.getImageContainer().getBoundingClientRect();
     this.coords = [event.clientX - rect.left, event.clientY - rect.top];
   }
 
@@ -295,7 +302,8 @@ export class DrawAreaComponent implements OnInit {
       case 'mouseMove':
         this.x2 = this.coords[0];
         this.y2 = this.coords[1];
-        let width; let height;
+        let width;
+        let height;
         if (this.x1 <= this.x2) {
           width = this.x2 - this.x1;
         } else {
@@ -434,19 +442,19 @@ export class DrawAreaComponent implements OnInit {
       this.selectedElement.setAttribute('font-size', this.properties.getFontProperties().size);
       this.image.append(this.selectedElement);
       /*@HostListener('keypress', ['$event'])
-          onMouseup(event: MouseEvent) {
-          this.lastMouseEvent = 'mouseUp';
-          this.isMouseDown = false;
-          this.actions(event);
-      }
-  switch(this.){
+       onMouseup(event: MouseEvent) {
+       this.lastMouseEvent = 'mouseUp';
+       this.isMouseDown = false;
+       this.actions(event);
+       }
+       switch(this.){
 
-  }*/
+       }*/
 
 
       /*case 'mouseUp':
-        this.selectedElement = null;
-        break;*/
+       this.selectedElement = null;
+       break;*/
     }
   }
 
@@ -455,7 +463,9 @@ export class DrawAreaComponent implements OnInit {
     switch (this.lastMouseEvent) {
       case 'mouseDown':
         const element = this.image.getElementAt(this.coords);
-        element.outerHTML = '';
+        if (element !== null) {
+          element.outerHTML = '';
+        }
         break;
     }
   }

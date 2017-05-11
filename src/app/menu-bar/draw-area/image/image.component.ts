@@ -1,5 +1,7 @@
-import { ImageService } from './image.service';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {Component, ViewChild, ElementRef} from '@angular/core';
+
+declare var ace: any;
+declare var vkbeautify: any;
 
 @Component({
   selector: 'app-image',
@@ -8,17 +10,22 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 })
 export class ImageComponent {
 
-  private loadingImage = '<h1>Loading image</h1>';
-
-  @ViewChild('imageContainer')
-  private imageContainer: ElementRef;
+  private isXmlShown = false;
   private isGridOn = true;
 
-  constructor(private imageService: ImageService) {
+  constructor() {
   }
 
-  getImage(): SVGElement {
-    return <SVGElement>document.getElementsByTagName('svg')[0];
+  isImageShown() {
+    return !this.isXmlShown;
+  }
+
+  getImage(): Element {
+    return document.getElementById("image");
+  }
+
+  getImageContainer(): Element {
+    return document.getElementById("imageContainer");
   }
 
   append(element: Element) {
@@ -50,12 +57,28 @@ export class ImageComponent {
 
   showGrid() {
     if (this.isGridOn === true) {
-      (<Element>this.imageContainer.nativeElement).setAttribute('style', 'background-image: none;');
+      this.getImageContainer().setAttribute('style', 'background-image: none;');
       this.isGridOn = false;
     } else {
-      (<Element>this.imageContainer.nativeElement).setAttribute('style', '');
+      this.getImageContainer().setAttribute('style', '');
       this.isGridOn = true;
     }
+  }
+
+  showXml() {
+    var editor = ace.edit("editor");
+
+    if (this.isXmlShown === false) {
+      this.isXmlShown = true;
+      editor.setTheme("ace/theme/dreamweaver");
+      editor.getSession().setMode("ace/mode/html");
+      editor.setValue(vkbeautify.xml(this.getImage().innerHTML));
+    }
+    else {
+      this.isXmlShown = false;
+      this.getImage().innerHTML = editor.getValue();
+    }
+
   }
 
 }

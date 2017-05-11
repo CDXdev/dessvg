@@ -7,7 +7,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppComponent } from './app.component';
-import { ImageService } from './menu-bar/draw-area/image/image.service';
 import { ImageComponent } from './menu-bar/draw-area/image/image.component';
 import { DrawAreaComponent } from './menu-bar/draw-area/draw-area.component';
 import { ToolsBoxComponent } from './menu-bar/draw-area/tools-box/tools-box.component';
@@ -30,7 +29,6 @@ import { PropertiesComponent } from './menu-bar/draw-area/properties/properties.
     ColorPickerModule
   ],
   providers: [
-    ImageService,
     { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [AppComponent],
