@@ -42,3 +42,11 @@ span {
 input {
 	max-width: 25px;	
 }
+
+.stretch{
+	transform:scale(2,1);
+}
+
+.double{
+	transform:scale(2,2);
+}
