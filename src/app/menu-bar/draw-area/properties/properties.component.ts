@@ -9,10 +9,14 @@ export class PropertiesComponent implements OnInit {
 
   public lineProperties: { thickness: string };
   public color;
+  public colorStroke;
+  public fontProperties: { size: string };
 
   constructor() {
-    this.lineProperties = { thickness: '1' };
+    this.lineProperties = { thickness: '10' };
     this.color = '#000';
+    this.colorStroke = '#f00';
+    this.fontProperties =  { size: '30'};
   }
 
   ngOnInit() {
@@ -24,5 +28,13 @@ export class PropertiesComponent implements OnInit {
 
   getColor() {
     return this.color;
+  }
+
+  getColorStroke() {
+    return this.colorStroke;
+  }
+
+  getFontProperties() {
+    return this.fontProperties;
   }
 }

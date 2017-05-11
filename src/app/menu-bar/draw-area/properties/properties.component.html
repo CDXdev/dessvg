@@ -8,7 +8,7 @@
 				class="form-control" placeholder="">
 		</div>
 		<div class="input-group">
-			<span class="input-group-addon">Other</span> <input type="text"
+			<span class="input-group-addon">Font size</span> <input [(ngModel)]="this.fontProperties.size" type="text"
 				class="form-control" placeholder="">
 		</div>
 		<div class="input-group">
@@ -20,8 +20,10 @@
 				class="form-control" placeholder="">
 		</div>
 		<div class="input-group">
-		<input [(colorPicker)]="color" [style.background]="color"
-			[value]="color" [cpPosition]="'left'" class="form-control"/>
-			</div>
+			<input [(colorPicker)]="color" [style.background]="color"
+				[value]="color" [cpPosition]="'left'" class="form-control" title="Select fill color"/>
+			<input [(colorPicker)]="colorStroke" [style.background]="colorStroke"
+				[value]="colorStroke" [cpPosition]="'left'" class="form-control" title="Select stroke color"/>
+		</div>
 	</div>
 </div>
