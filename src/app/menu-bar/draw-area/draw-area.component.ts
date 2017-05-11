@@ -49,6 +49,7 @@ export class DrawAreaComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   onKeyPressed(event: KeyboardEvent) {
     this.lastKeyEvent = event.key;
+    this.actions(event);
   }
 
   @HostListener('mouseup', ['$event'])
@@ -65,9 +66,9 @@ export class DrawAreaComponent implements OnInit {
     if (this.getImageComponent().isImageShown()) {
       this.lastMouseEvent = 'mouseMove';
       this.updateCoords(event);
-      if (this.isMouseDown) {
+      //if (this.isMouseDown) {
         this.actions(event);
-      }
+      //}
     }
   }
 
@@ -85,7 +86,7 @@ export class DrawAreaComponent implements OnInit {
     this.coords = [event.clientX - rect.left, event.clientY - rect.top];
   }
 
-  actions(event: MouseEvent) {
+  actions(event: Event) {
     if (this.isCursorOnImage(event)) {
       switch (this.toolsBox.getSelectedTool()) {
         case 'translate':
@@ -113,7 +114,7 @@ export class DrawAreaComponent implements OnInit {
           this.drawPolygonAction();
           break;
         case 'drawPolyline':
-          this.drawPolylineAction();
+          this.drawPolylineAction(event);
           break;
         case 'drawText':
           this.drawTextAction();
@@ -125,7 +126,7 @@ export class DrawAreaComponent implements OnInit {
     }
   }
 
-  isCursorOnImage(event: MouseEvent) {
+  isCursorOnImage(event: Event) {
     return this.cursorOnImage;
   }
 
@@ -410,38 +411,42 @@ export class DrawAreaComponent implements OnInit {
 
   }
 
-  drawPolylineAction() {
+  drawPolylineAction(event: Event) {
+    if (event instanceof MouseEvent) {
+    switch (event.type) {
 
-    switch (this.lastMouseEvent) {
-
-      case 'mouseDown':
-        this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-        this.x1 = this.coords[0];
-        this.y1 = this.coords[1];
-        this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
-        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.properties.getColor());
-        this.selectedElement.setAttribute('fill', 'none');
-        this.image.append(this.selectedElement);
-
-        break;
-
-      case 'mouseMove':
-        let thePoints = this.selectedElement.getAttribute('points');
-        const posSpace = thePoints.lastIndexOf(' ');
-        if ((posSpace !== -1)) {
-          thePoints = thePoints.substring(0, posSpace);
+      case 'mousedown':
+        if (this.selectedElement === null) {
+          this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+          this.x1 = this.coords[0];
+          this.y1 = this.coords[1];
+          this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
+          this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+          this.selectedElement.setAttribute('stroke', this.properties.getColor());
+          this.selectedElement.setAttribute('fill', 'none');
+          this.image.append(this.selectedElement);
         }
-          alert(thePoints);
-        this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
         break;
 
-      case 'mouseUp':
-        this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + this.coords[0] + ',' + this.coords[1]);
+      case 'mousemove':
+        if (this.selectedElement !== null) {
+          let thePoints = this.selectedElement.getAttribute('points');
+          const posSpace = thePoints.lastIndexOf(' ');
+          if ((posSpace !== -1)) {
+            thePoints = thePoints.substring(0, posSpace);
+          }
+          this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
+        }
+        break;
+
+      case 'mouseup':
+        this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + ' ' + this.coords[0] + ',' + this.coords[1]);
         break;
     }
+      }
 
-    if (this.lastKeyEvent = 'Escape') {
+      console.log(event);
+    if (event instanceof KeyboardEvent && event.key === 'Escape') {
       this.selectedElement = null;
     }
 
