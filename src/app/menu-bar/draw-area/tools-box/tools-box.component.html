@@ -1,16 +1,16 @@
 <div id="toolbox">
 	<button (click)="setSelectedTool('translate',$event)" type="button"
 		class="btn btn-default btn-lg" title="Translate">
-		<span class=" glyphicon glyphicon-move" aria-hidden="true"></span>
+		<span class=" glyphicon glyphicon-move double" aria-hidden="true"></span>
 	</button>
 	<button (click)="setSelectedTool('rotate',$event)" type="button"
 		class="btn btn-default btn-lg" title="Rotate">
-		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-refresh double" aria-hidden="true"></span>
 	</button>
 	<div id="separator"></div>
 	<button (click)="setSelectedTool('drawLine',$event)" type="button"
 		class="btn btn-default btn-lg" title="Draw Lines">
-		<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-minus stretch" aria-hidden="true"></span>
 	</button>
 	<button (click)="setSelectedTool('drawCircle',$event)" type="button"
 		class="btn btn-default btn-lg" title="Draw Circles">
@@ -18,13 +18,11 @@
 	</button>
 	<button (click)="setSelectedTool('drawEllipse',$event)" type="button"
 		class="btn btn-default btn-lg" title="Draw Ellipses">
-    <svg xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="24" cy="24" rx="7" ry="5" stroke-width="2" stroke="#333" fill="#fff">
-      </ellipse></svg>
+		<span class="fa fa-circle-o stretch" aria-hidden="true"></span>
 	</button>
 	<button (click)="setSelectedTool('drawRect',$event)" type="button"
 		class="btn btn-default btn-lg" title="Draw Rectangles">
-		<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-stop stretch" aria-hidden="true"></span>
 	</button>
 	<button (click)="setSelectedTool('drawPath',$event)" type="button"
 		class="btn btn-default btn-lg" title="Free Drawing (SVG Paths)">
