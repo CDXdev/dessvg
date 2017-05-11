@@ -109,15 +109,15 @@ export class DrawAreaComponent implements OnInit {
           case 'drawPath':
             this.drawPathAction();
             break;
-          case 'drawPolygon':
-            this.drawPolygonAction();
-            break;
           case 'delete':
             this.deleteAction();
             break;
         }
       }
       switch (this.toolsBox.getSelectedTool()) {
+          case 'drawPolygon':
+            this.drawPolygonAction(event);
+            break;
         case 'drawPolyline':
           this.drawPolylineAction(event);
           break;
@@ -398,36 +398,45 @@ export class DrawAreaComponent implements OnInit {
 
   }
 
-  drawPolygonAction() {
+  drawPolygonAction(event: Event) {
+    if (event instanceof MouseEvent) {
+    switch (event.type) {
 
-    switch (this.lastMouseEvent) {
-
-      case 'mouseDown':
-        this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        this.x1 = this.coords[0];
-        this.y1 = this.coords[1];
-        this.selectedElement.setAttribute('x', this.x1.toString());
-        this.selectedElement.setAttribute('y', this.y1.toString());
-        this.selectedElement.setAttribute('width', '0');
-        this.selectedElement.setAttribute('height', '0');
-        this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
-        this.selectedElement.setAttribute('stroke', this.properties.getColorStroke());
-        this.image.append(this.selectedElement);
-
+      case 'mousedown':
+        if (this.selectedElement === null) {
+          this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+          this.x1 = this.coords[0];
+          this.y1 = this.coords[1];
+          this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
+          this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+          this.selectedElement.setAttribute('stroke', this.properties.getColorStroke());
+          this.selectedElement.setAttribute('fill', this.properties.getColor());
+          this.image.append(this.selectedElement);
+        }
         break;
 
-      case 'mouseMove':
-        this.x2 = this.coords[0];
-        this.y2 = this.coords[1];
-        const width = this.x2 - this.x1;
-        const height = this.y2 - this.y1;
-        this.selectedElement.setAttribute('height', height.toString());
-        this.selectedElement.setAttribute('width', width.toString());
+      case 'mousemove':
+        if (this.selectedElement !== null) {
+          let thePoints = this.selectedElement.getAttribute('points');
+          const posSpace = thePoints.lastIndexOf(' ');
+          if ((posSpace !== -1)) {
+            thePoints = thePoints.substring(0, posSpace);
+          }
+          this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
+        }
         break;
 
-      case 'mouseUp':
-        this.selectedElement = null;
+      case 'mouseup':
+        this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + ' ' + this.coords[0] + ',' + this.coords[1]);
         break;
+    }
+      }
+
+    if (event instanceof KeyboardEvent && event.key === 'Escape') {
+      let thePoints = this.selectedElement.getAttribute('points');
+      thePoints = thePoints.substring(0, thePoints.lastIndexOf(' '));
+      this.selectedElement.setAttribute('points', thePoints);
+      this.selectedElement = null;
     }
 
   }
@@ -465,7 +474,11 @@ export class DrawAreaComponent implements OnInit {
           break;
       }
     }
+	
     if (event instanceof KeyboardEvent && event.key === 'Escape') {
+      let thePoints = this.selectedElement.getAttribute('points');
+      thePoints = thePoints.substring(0, thePoints.lastIndexOf(' '));
+      this.selectedElement.setAttribute('points', thePoints);
       this.selectedElement = null;
     }
 
