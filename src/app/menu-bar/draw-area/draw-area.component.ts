@@ -65,9 +65,8 @@ export class DrawAreaComponent implements OnInit {
     if (this.getImageComponent().isImageShown()) {
       this.lastMouseEvent = 'mouseMove';
       this.updateCoords(event);
-      //if (this.isMouseDown) {
-        this.actions(event);
-      //}
+      this.actions(event);
+
     }
   }
 
@@ -87,39 +86,43 @@ export class DrawAreaComponent implements OnInit {
 
   actions(event: Event) {
     if (this.isCursorOnImage(event)) {
+      if(this.isMouseDown===true) {
+        switch (this.toolsBox.getSelectedTool()) {
+          case 'translate':
+            this.translateAction();
+            break;
+          case 'rotate':
+            this.rotateAction();
+            break;
+          case 'drawLine':
+            this.drawLineAction();
+            break;
+          case 'drawCircle':
+            this.drawCircleAction();
+            break;
+          case 'drawEllipse':
+            this.drawEllipseAction();
+            break;
+          case 'drawRect':
+            this.drawRectAction();
+            break;
+          case 'drawPath':
+            this.drawPathAction();
+            break;
+          case 'drawPolygon':
+            this.drawPolygonAction();
+            break;
+          case 'delete':
+            this.deleteAction();
+            break;
+        }
+      }
       switch (this.toolsBox.getSelectedTool()) {
-        case 'translate':
-          this.translateAction();
-          break;
-        case 'rotate':
-          this.rotateAction();
-          break;
-        case 'drawLine':
-          this.drawLineAction();
-          break;
-        case 'drawCircle':
-          this.drawCircleAction();
-          break;
-        case 'drawEllipse':
-          this.drawEllipseAction();
-          break;
-        case 'drawRect':
-          this.drawRectAction();
-          break;
-        case 'drawPath':
-          this.drawPathAction();
-          break;
-        case 'drawPolygon':
-          this.drawPolygonAction();
-          break;
         case 'drawPolyline':
           this.drawPolylineAction(event);
           break;
         case 'drawText':
-          this.drawTextAction();
-          break;
-        case 'delete':
-          this.deleteAction();
+          this.drawTextAction(event);
           break;
       }
     }
@@ -131,6 +134,11 @@ export class DrawAreaComponent implements OnInit {
 
   setSelectedElement() {
     this.selectedElement = this.image.getElementAt(this.coords);
+    this.getImageComponent().setSelectedElement(this.selectedElement);
+  }
+
+  setGivenSelectedElement(element: Element) {
+    this.selectedElement = element;
     this.getImageComponent().setSelectedElement(this.selectedElement);
   }
 
@@ -426,71 +434,64 @@ export class DrawAreaComponent implements OnInit {
 
   drawPolylineAction(event: Event) {
     if (event instanceof MouseEvent) {
-    switch (event.type) {
+      switch (event.type) {
 
-      case 'mousedown':
-        if (this.selectedElement === null) {
-          this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-          this.x1 = this.coords[0];
-          this.y1 = this.coords[1];
-          this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
-          this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
-          this.selectedElement.setAttribute('stroke', this.properties.getColor());
-          this.selectedElement.setAttribute('fill', 'none');
-          this.image.append(this.selectedElement);
-        }
-        break;
-
-      case 'mousemove':
-        if (this.selectedElement !== null) {
-          let thePoints = this.selectedElement.getAttribute('points');
-          const posSpace = thePoints.lastIndexOf(' ');
-          if ((posSpace !== -1)) {
-            thePoints = thePoints.substring(0, posSpace);
+        case 'mousedown':
+          if (this.selectedElement === null) {
+            this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+            this.x1 = this.coords[0];
+            this.y1 = this.coords[1];
+            this.selectedElement.setAttribute('points', this.x1 + ',' + this.y1);
+            this.selectedElement.setAttribute('stroke-width', this.properties.getLineProperties().thickness);
+            this.selectedElement.setAttribute('stroke', this.properties.getColor());
+            this.selectedElement.setAttribute('fill', 'none');
+            this.image.append(this.selectedElement);
           }
-          this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
-        }
-        break;
+          break;
 
-      case 'mouseup':
-        this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + ' ' + this.coords[0] + ',' + this.coords[1]);
-        break;
-    }
+        case 'mousemove':
+          if (this.selectedElement !== null) {
+            let thePoints = this.selectedElement.getAttribute('points');
+            const posSpace = thePoints.lastIndexOf(' ');
+            if ((posSpace !== -1)) {
+              thePoints = thePoints.substring(0, posSpace);
+            }
+            this.selectedElement.setAttribute('points', thePoints + ' ' + this.coords[0] + ',' + this.coords[1]);
+          }
+          break;
+
+        case 'mouseup':
+          this.selectedElement.setAttribute('points', this.selectedElement.getAttribute('points') + ' ' + this.coords[0] + ',' + this.coords[1]);
+          break;
       }
-
-      console.log(event);
+    }
+    console.log(event);
     if (event instanceof KeyboardEvent && event.key === 'Escape') {
       this.selectedElement = null;
     }
 
+
   }
 
-  drawTextAction() {
+  drawTextAction(event: Event) {
 
-    if (this.lastMouseEvent === 'mouseDown') {
+    if (event instanceof MouseEvent && event.type === 'mouseup') {
+
       this.selectedElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       this.x1 = this.coords[0];
       this.y1 = this.coords[1];
       this.selectedElement.setAttribute('x', this.x1.toString());
       this.selectedElement.setAttribute('y', this.y1.toString());
-      this.selectedElement.append(document.createTextNode('|'));
       this.selectedElement.setAttribute('fill', this.properties.getColor());
       this.selectedElement.setAttribute('font-size', this.properties.getFontProperties().size);
+      this.selectedElement.innerHTML = '';
       this.image.append(this.selectedElement);
-      /*@HostListener('keypress', ['$event'])
-       onMouseup(event: MouseEvent) {
-       this.lastMouseEvent = 'mouseUp';
-       this.isMouseDown = false;
-       this.actions(event);
-       }
-       switch(this.){
+      this.setGivenSelectedElement(this.selectedElement);
+    }
 
-       }*/
-
-
-      /*case 'mouseUp':
-       this.selectedElement = null;
-       break;*/
+    if (event instanceof KeyboardEvent && ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 96 && event.keyCode <= 105))) {
+      this.selectedElement.innerHTML = this.selectedElement.innerHTML + event.key;
+      this.updateSelectedElement();
     }
   }
 

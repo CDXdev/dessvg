@@ -101,6 +101,7 @@ export class ImageComponent implements AfterViewInit {
   }
 
   setSelectedElement(element: HTMLElement) {
+    this.deleteSelectedElement();
     let elementBounds = element.getBoundingClientRect();
     let imageBounds = this.getImageBounds();
     this.createSelectionRect(elementBounds.left - imageBounds.left, elementBounds.top - imageBounds.top, elementBounds.width, elementBounds.height);
