@@ -89,7 +89,9 @@ export class ImageComponent implements AfterViewInit {
   showXml() {
     var editor = ace.edit("editor");
     if (this.isXmlShown === false) {
-      document.getElementById('selection').outerHTML = '';
+      if(document.getElementById('selection')!=null){
+        document.getElementById('selection').outerHTML = '';
+      }
       this.isXmlShown = true;
       editor.setTheme("ace/theme/dreamweaver");
       editor.getSession().setMode("ace/mode/html");
