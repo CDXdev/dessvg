@@ -533,6 +533,7 @@ export class DrawAreaComponent implements OnInit {
 
     switch (this.lastMouseEvent) {
       case 'mouseDown':
+        this.deleteSelectedElement();
         const element = this.image.getElementAt(this.coords);
         if (element !== null) {
           element.outerHTML = '';
