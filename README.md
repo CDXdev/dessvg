@@ -1,6 +1,6 @@
 # VCSdrawer
 
-VCSdrawer is an open source SVG Drawing application. Currently a web app, we plan to port our work on smartphones and Windows/Linux/MacOS.
+VCSdrawer is an open source SVG Drawing application. It is available as both a web app and a desktop application for windows/macOS/linux distributions. Please refer bellow for further informations.
 The application is accessible on this url : http://guillaumegresillion.pe.hu/svgdrawer and on this repo !
 
 ## Developping
