@@ -13,7 +13,8 @@
     "e2e": "ng e2e",
     "pack": "build --dir",
     "electron": "electron .",
-    "build_electron": "build"
+    "build_electron": "build",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json"
   },
   "private": true,
   "dependencies": {

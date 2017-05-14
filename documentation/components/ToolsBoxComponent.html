@@ -1,0 +1,656 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>vcsdrawer documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">vcsdrawer documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../index.html">vcsdrawer documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DrawAreaComponent.html" >DrawAreaComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ImageComponent.html" >ImageComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/MenuBarComponent.html" >MenuBarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PropertiesComponent.html" >PropertiesComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ToolsBoxComponent.html"  data-type="entity-link" class="active" >ToolsBoxComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../index.html">vcsdrawer documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DrawAreaComponent.html" >DrawAreaComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ImageComponent.html" >ImageComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/MenuBarComponent.html" >MenuBarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PropertiesComponent.html" >PropertiesComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ToolsBoxComponent.html"  data-type="entity-link" class="active" >ToolsBoxComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content component">
+                   <div class="content-data">
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ToolsBoxComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab" data-link="infos">Infos</a>
+    </li>
+
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+
+    <li>
+        <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+    </li>
+    <li>
+        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="infos"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/menu-bar/draw-area/tools-box/tools-box.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/docs/ts/latest/api/core/index/OnInit-interface.html" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-tools-box</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>tools-box.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./tools-box.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>constructor()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:11</a></div>
+                            </td>
+                        </tr>
+    
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        
+            <h3 id="methods">
+                Methods
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> ngOnInit</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>ngOnInit()</code>
+                        </td>
+                    </tr>
+    
+    
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:15</a></div>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> getSelectedTool</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>getSelectedTool()</code>
+                        </td>
+                    </tr>
+    
+    
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:19</a></div>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Protected</span> setSelectedTool</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon method fa fa-play lock">
+                                    <span class="fa fa-lock"></span>
+                                </span>
+                            <code>setSelectedTool(tool: string, event: <a href="https://angular.io/docs/ts/latest/api/router/index/Event-type-alias.html" target="_blank">Event</a>)</code>
+                        </td>
+                    </tr>
+    
+    
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:23</a></div>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Protected</span> lastPressedButton</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>lastPressedButton:     <code>Element</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:10</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Protected</span> selectedTool</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>selectedTool:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:11</a></div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-tools-box&#x27;,
+  templateUrl: &#x27;./tools-box.component.html&#x27;,
+  styleUrls: [&#x27;./tools-box.component.css&#x27;]
+})
+export class ToolsBoxComponent implements OnInit {
+
+  private lastPressedButton: Element;
+  private selectedTool: string;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.selectedTool &#x3D; &#x27;translate&#x27;;
+  }
+
+  getSelectedTool() {
+    return this.selectedTool;
+  }
+
+  private setSelectedTool(tool: string, event: Event) {
+    this.selectedTool &#x3D; tool;
+    if (!(this.lastPressedButton &#x3D;&#x3D; null)) {
+      this.lastPressedButton.setAttribute(&#x27;style&#x27;, &#x27;background: #fff&#x27;);
+    }
+    this.lastPressedButton &#x3D; (&lt;Element&gt;event.currentTarget);
+    this.lastPressedButton.setAttribute(&#x27;style&#x27;, &#x27;background: #e7e7e7&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;toolbox&quot;&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;translate&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Translate&quot;&gt;
+		&lt;span class&#x3D;&quot; glyphicon glyphicon-move double&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;rotate&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Rotate&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-refresh double&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;div id&#x3D;&quot;separator&quot;&gt;&lt;/div&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawLine&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Draw Lines&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-minus stretch&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawCircle&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Draw Circles&quot;&gt;
+		&lt;span class&#x3D;&quot;fa fa-circle-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawEllipse&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Draw Ellipses&quot;&gt;
+    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
+      &lt;ellipse cx&#x3D;&quot;24&quot; cy&#x3D;&quot;24&quot; rx&#x3D;&quot;7&quot; ry&#x3D;&quot;5&quot; stroke-width&#x3D;&quot;2&quot; stroke&#x3D;&quot;#333&quot; fill&#x3D;&quot;#fff&quot;&gt;
+      &lt;/ellipse&gt;&lt;/svg&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawRect&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Draw Rectangles&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-stop stretch&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawPath&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Free Drawing (SVG Paths)&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-pencil&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawPolygon&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Draw Polygons&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-star&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawPolyline&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot;
+		title&#x3D;&quot;Draw Multiple Lines (SVG Polylines)&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-star-empty&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;drawText&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Write Text&quot;&gt;
+		&lt;span class&#x3D;&quot;fa fa-font&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+	&lt;button (click)&#x3D;&quot;setSelectedTool(&#x27;delete&#x27;,$event)&quot; type&#x3D;&quot;button&quot;
+		class&#x3D;&quot;btn btn-default btn-lg&quot; title&#x3D;&quot;Delete Element&quot;&gt;
+		&lt;span class&#x3D;&quot;glyphicon glyphicon-trash&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade" id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div id="toolbox">	<button (click)="setSelectedTool(\'translate\',$event)" type="button"		class="btn btn-default btn-lg" title="Translate">		<span class=" glyphicon glyphicon-move double" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'rotate\',$event)" type="button"		class="btn btn-default btn-lg" title="Rotate">		<span class="glyphicon glyphicon-refresh double" aria-hidden="true"></span>	</button>	<div id="separator"></div>	<button (click)="setSelectedTool(\'drawLine\',$event)" type="button"		class="btn btn-default btn-lg" title="Draw Lines">		<span class="glyphicon glyphicon-minus stretch" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'drawCircle\',$event)" type="button"		class="btn btn-default btn-lg" title="Draw Circles">		<span class="fa fa-circle-o" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'drawEllipse\',$event)" type="button"		class="btn btn-default btn-lg" title="Draw Ellipses">    <svg xmlns="http://www.w3.org/2000/svg">      <ellipse cx="24" cy="24" rx="7" ry="5" stroke-width="2" stroke="#333" fill="#fff">      </ellipse></svg>	</button>	<button (click)="setSelectedTool(\'drawRect\',$event)" type="button"		class="btn btn-default btn-lg" title="Draw Rectangles">		<span class="glyphicon glyphicon-stop stretch" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'drawPath\',$event)" type="button"		class="btn btn-default btn-lg" title="Free Drawing (SVG Paths)">		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'drawPolygon\',$event)" type="button"		class="btn btn-default btn-lg" title="Draw Polygons">		<span class="glyphicon glyphicon-star" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'drawPolyline\',$event)" type="button"		class="btn btn-default btn-lg"		title="Draw Multiple Lines (SVG Polylines)">		<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'drawText\',$event)" type="button"		class="btn btn-default btn-lg" title="Write Text">		<span class="fa fa-font" aria-hidden="true"></span>	</button>	<button (click)="setSelectedTool(\'delete\',$event)" type="button"		class="btn btn-default btn-lg" title="Delete Element">		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>	</button></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawAreaComponent', 'selector': 'app-draw-area'},{'name': 'ImageComponent', 'selector': 'app-image'},{'name': 'MenuBarComponent', 'selector': 'app-menu-bar'},{'name': 'PropertiesComponent', 'selector': 'app-properties'},{'name': 'ToolsBoxComponent', 'selector': 'app-tools-box'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ToolsBoxComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script>var COMPODOC_CURRENT_PAGE_DEPTH = 1;</script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+    </body>
+</html>
