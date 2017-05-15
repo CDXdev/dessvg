@@ -819,6 +819,8 @@ export class DrawAreaComponent implements OnInit {
 
   /**
    * Method used to get the image object from this draw area
+   * 
+   * @return image
    */
   getImageComponent() {
     return this.image;
