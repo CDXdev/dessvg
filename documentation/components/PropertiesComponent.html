@@ -335,6 +335,11 @@
                             </td>
                         </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Define default property values</p><br/></div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
     </section>
@@ -360,12 +365,13 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:28</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Called when page is initialised</p><br/></div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
@@ -391,17 +397,23 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:36</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>lineProperty getter</p><br/></div>
     
+                                <div class="io-description">
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -422,17 +434,23 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:45</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>color getter</p><br/></div>
     
+                                <div class="io-description">
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -453,17 +471,23 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:54</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>colorStroke getter</p><br/></div>
     
+                                <div class="io-description">
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -484,17 +508,23 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/menu-bar/draw-area/properties/properties.component.ts:63</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>fontProperty getter</p><br/></div>
     
+                                <div class="io-description">
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -605,6 +635,9 @@ export class PropertiesComponent implements OnInit {
   public colorStroke;
   public fontProperties: { size: string };
 
+  /**
+   * Define default property values
+   */
   constructor() {
     this.lineProperties &#x3D; { thickness: &#x27;5&#x27; };
     this.color &#x3D; &#x27;#000&#x27;;
@@ -612,21 +645,44 @@ export class PropertiesComponent implements OnInit {
     this.fontProperties &#x3D;  { size: &#x27;30&#x27;};
   }
 
+  /**
+   * Called when page is initialised
+   */
   ngOnInit() {
   }
 
+  /**
+   * lineProperty getter
+   * 
+   * @return lineProperties
+   */
   getLineProperties() {
     return this.lineProperties;
   }
 
+  /**
+   * color getter
+   * 
+   * @return color
+   */
   getColor() {
     return this.color;
   }
 
+  /**
+   * colorStroke getter
+   * 
+   * @return colorStroke
+   */
   getColorStroke() {
     return this.colorStroke;
   }
 
+  /**
+   * fontProperty getter
+   * 
+   * @return fontProperty
+   */
   getFontProperties() {
     return this.fontProperties;
   }

@@ -360,12 +360,13 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:20</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Called when page is initialised</p><br/><p>Select tool translate just after the page is loaded</p><br/></div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
@@ -391,17 +392,23 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:29</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>selectedTool getter</p><br/></div>
     
+                                <div class="io-description">
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -425,17 +432,50 @@
     
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/menu-bar/draw-area/tools-box/tools-box.component.ts:42</a></div>
                             </td>
                         </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>selectedTool setter</p><br/><p>Set a tool as selected<br/>Change pressed button style</p><br/></div>
     
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <ul class="jsdoc-params">
+                                                <li>
+                                                    <div>
+                                                        <b>tool</b>
+                                                    </div>
+                                                    <div>
+                                                        <ul>
+    <li>the tool to set</li>
+    </ul>
+    
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>event</b>
+                                                            :     <code><a href="https://angular.io/docs/ts/latest/api/router/index/Event-type-alias.html" target="_blank" >Event</a></code>
+    
+                                                    </div>
+                                                    <div>
+                                                        <ul>
+    <li>event to see if a button has been pressed and which one</li>
+    </ul>
+    
+                                                    </div>
+                                                </li>
+                                        </ul>
+                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>    <code>void</code>
     
                                 </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -506,14 +546,33 @@ export class ToolsBoxComponent implements OnInit {
 
   constructor() { }
 
+  /**
+   * Called when page is initialised
+   * 
+   * Select tool translate just after the page is loaded
+   */
   ngOnInit() {
     this.selectedTool &#x3D; &#x27;translate&#x27;;
   }
 
+  /**
+   * selectedTool getter
+   * 
+   * @return selectedTool
+   */
   getSelectedTool() {
     return this.selectedTool;
   }
 
+  /**
+   * selectedTool setter
+   * 
+   * Set a tool as selected
+   * Change pressed button style
+   * 
+   * @param {string} tool - the tool to set
+   * @param {Event} event - event to see if a button has been pressed and which one
+   */
   private setSelectedTool(tool: string, event: Event) {
     this.selectedTool &#x3D; tool;
     if (!(this.lastPressedButton &#x3D;&#x3D; null)) {

@@ -19,40 +19,90 @@ export class ImageComponent implements AfterViewInit {
   constructor() {
   }
 
+  /**
+   * Called when page is initialised
+   *
+   * Create the image (svg tag)
+   * Create and append the select rectangle to the image
+   * Append all in DOM
+   */
   ngAfterViewInit() {
-    this.image = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    this.image.setAttribute("id", "image");
-    this.image.setAttribute("xmlns","http://www.w3.org/2000/svg");
-    this.selection = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    this.selection.setAttribute("id", "selection");
+    this.image = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    this.image.setAttribute('id', 'image');
+    this.image.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    this.selection = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    this.selection.setAttribute('id', 'selection');
     this.image.appendChild(this.selection);
     this.getImageContainer().appendChild(this.image);
   }
 
+  /**
+   * isXmlShown getter
+   *
+   * Tell whether the image or the Xml is shown
+   *
+   * @return {bool} isXmlShown
+   */
   isImageShown() {
     return !this.isXmlShown;
   }
 
+  /**
+   * selection getter
+   *
+   * @return {SVGGraphicsElement} selection - blue selection rectangle
+   */
   getSelection(): SVGGraphicsElement {
     return this.selection;
   }
 
+  /**
+   * image getter
+   *
+   * @return {SVGSVGElement} image - the SVG tag
+   */
   getImage(): SVGSVGElement {
     return this.image;
   }
 
+  /**
+   * imageContainer getter
+   *
+   * The image container is the parent div tag of the image
+   *
+   * @return {Element} $(#imageContainer)
+   */
   getImageContainer(): Element {
-    return document.getElementById("imageContainer");
+    return document.getElementById('imageContainer');
   }
 
+  /**
+   * Name refactorisation to improve code visibility
+   *
+   * @param {Element} element - the element to add to the image
+   */
   append(element: Element) {
     this.getImage().appendChild(element);
   }
 
+  /**
+   * Image bounds getter
+   *
+   * Return the element top, bottom, right, left describing the bounds of the image
+   *
+   * @return {DOMRect} imageBounds
+   */
   getImageBounds() {
     return this.getImage().getBoundingClientRect();
   }
 
+  /**
+   * Return if an element is present in precified coordinates
+   *
+   * @param {number[]} coords - the coordinates to be checked
+   *
+   * @return {HTMLElement} ElementAtCoords - the first element at the given coordinates. null if no elements are found at the coordinates
+   */
   getElementAt(coords: number[]): HTMLElement {
     const rect = this.getImage().getBoundingClientRect();
     const element = <HTMLElement>document.elementFromPoint(coords[0] + rect.left, coords[1] + rect.top);
@@ -62,6 +112,13 @@ export class ImageComponent implements AfterViewInit {
     return null;
   }
 
+  /**
+   * Return if at least one element in the image is of the same type as a given element
+   *
+   * @param {Element} element
+   *
+   * @return {bool} partOfImage - true if the given element is of the same type as one of elements in the image
+   */
   isPartOfImage(element: Element) {
     const children = this.getImage().children;
     for (let i = 0; i < children.length; i++) {
@@ -72,10 +129,19 @@ export class ImageComponent implements AfterViewInit {
     return false;
   }
 
+  /**
+   * Clear the svg tag
+   */
   newImage() {
     this.getImage().innerHTML = '';
   }
 
+  /**
+   * Hide/show the image grid
+   *
+   * If the grid is shown, it is now hidden
+   * If the grid is hidden, it is now shown
+   */
   showGrid() {
     if (this.isGridOn === true) {
       this.getImageContainer().setAttribute('style', 'background-image: none;');
@@ -86,21 +152,27 @@ export class ImageComponent implements AfterViewInit {
     }
   }
 
+  /**
+   * Hide/show the image XML text
+   *
+   * If the XML text is shown, it is now hidden and the image is displayed
+   * If the XML text is hidden, it is now shown and the image is hidden
+   */
   showXml() {
-    var editor = ace.edit("editor");
+    var editor = ace.edit('editor');
     if (this.isXmlShown === false) {
-      if(document.getElementById('selection')!=null){
+      if (document.getElementById('selection') != null) {
         document.getElementById('selection').outerHTML = '';
       }
       this.isXmlShown = true;
-      editor.setTheme("ace/theme/dreamweaver");
-      editor.getSession().setMode("ace/mode/html");
+      editor.setTheme('ace/theme/dreamweaver');
+      editor.getSession().setMode('ace/mode/html');
       this.deleteSelectedElement();
       editor.setValue(vkbeautify.xml(this.getImage().innerHTML));
     }
     else {
-      this.selection = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      this.selection.setAttribute("id", "selection");
+      this.selection = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      this.selection.setAttribute('id', 'selection');
       this.image.appendChild(this.selection);
       this.isXmlShown = false;
       //this.getImage().getElementById('selection').outerHTML = this.savedSelectionElement;
@@ -109,6 +181,14 @@ export class ImageComponent implements AfterViewInit {
 
   }
 
+  /**
+   * selectedElement setter
+   *
+   * Unselect the selected element
+   * The blue selection rectangle is created around the element given in parameter
+   *
+   * @param {HTMLElement} element
+   */
   setSelectedElement(element: HTMLElement) {
     this.deleteSelectedElement();
     let elementBounds = element.getBoundingClientRect();
@@ -116,10 +196,18 @@ export class ImageComponent implements AfterViewInit {
     this.createSelectionRect(elementBounds.left - imageBounds.left, elementBounds.top - imageBounds.top, elementBounds.width, elementBounds.height);
   }
 
+    /**
+     * Create the blue selection rectangle using x, y, width, heigth given as parameters
+     *
+     * @param {number} ElementX - abscissa of the left top of the blue selection rectangle
+     * @param {number} ElementY - ordinate of the left top of the blue selection rectangle
+     * @param {number} ElementW - width of the left top of the blue selection rectangle
+     * @param {number} ElementH - heigth of the left top of the blue selection rectangle
+     */
   createSelectionRect(elementX: number, elementY: number, elementW: number, elementH: number) {
-    if(document.getElementById('selection') === null){
-      this.selection = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      this.selection.setAttribute("id", "selection");
+    if (document.getElementById('selection') === null) {
+      this.selection = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      this.selection.setAttribute('id', 'selection');
       this.image.appendChild(this.selection);
     }
     let x = elementX - 5;
@@ -181,17 +269,35 @@ export class ImageComponent implements AfterViewInit {
     this.selectionAppend(selectionRectSW);
   }
 
+  /**
+   * Update the selected element
+   *      delete the unselect the element given as a parameter
+   *      call setSelectedElement
+   *
+   * @param {HTMLElement} element - element to update selection
+   *
+   * @see deleteSelectedElement
+   * @see setSelectedElement
+   */
   updateSelectedElement(element: HTMLElement) {
     this.deleteSelectedElement();
     this.setSelectedElement(element);
   }
 
-  deleteSelectedElement(){
-    if(document.getElementById('selection') != null) {
-      document.getElementById('selection').innerHTML = "";
+  /**
+   * Delete the blue selection rectangle
+   */
+  deleteSelectedElement() {
+    if (document.getElementById('selection') != null) {
+      document.getElementById('selection').innerHTML = '';
     }
   }
 
+  /**
+   * Append an element given as parameter in the blue selection rectangle
+   *
+   * @param {SVGElement} element - the element to be appended
+   */
   selectionAppend(element: SVGElement) {
     this.getSelection().appendChild(element);
   }

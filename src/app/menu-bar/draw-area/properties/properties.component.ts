@@ -12,6 +12,9 @@ export class PropertiesComponent implements OnInit {
   public colorStroke;
   public fontProperties: { size: string };
 
+  /**
+   * Define default property values
+   */
   constructor() {
     this.lineProperties = { thickness: '5' };
     this.color = '#000';
@@ -19,21 +22,44 @@ export class PropertiesComponent implements OnInit {
     this.fontProperties =  { size: '30'};
   }
 
+  /**
+   * Called when page is initialised
+   */
   ngOnInit() {
   }
 
+  /**
+   * lineProperty getter
+   * 
+   * @return lineProperties
+   */
   getLineProperties() {
     return this.lineProperties;
   }
 
+  /**
+   * color getter
+   * 
+   * @return color
+   */
   getColor() {
     return this.color;
   }
 
+  /**
+   * colorStroke getter
+   * 
+   * @return colorStroke
+   */
   getColorStroke() {
     return this.colorStroke;
   }
 
+  /**
+   * fontProperty getter
+   * 
+   * @return fontProperty
+   */
   getFontProperties() {
     return this.fontProperties;
   }

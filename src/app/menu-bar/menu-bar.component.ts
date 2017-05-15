@@ -22,8 +22,6 @@ export class MenuBarComponent implements OnInit {
 
   /**
    * Called when page is initialised
-   * 
-   * Nothing to do here
    */
   ngOnInit() {
   }
@@ -64,10 +62,10 @@ export class MenuBarComponent implements OnInit {
   /**
    * Method called when the "Show XML" or "Hide XML" button is pressed
    * 
-   * Change the button text ("Show XML" => "Hide XML" or "Hide XML" => "Show XML"
-   * And call the showXml method from drawArea
+   * Change the button text ("Show XML" => "Hide XML" or "Hide XML" => "Show XML")
+   * And call the showXml method from image
    * 
-   * @see drawArea.showXml
+   * @see image.showXml
    */
   showXml() {
     this.drawArea.getImageComponent().showXml();
@@ -81,7 +79,7 @@ export class MenuBarComponent implements OnInit {
   /**
    * Method called when the "Open" button is pressed
    * 
-   * generate a click event on the hidden openFile input tag with type="file" attribute to open a file picker message box
+   * Generate a click event on the hidden openFile input tag with type="file" attribute to open a file picker message box
    */
   open() {
     document.getElementById('openFile').click();
@@ -110,6 +108,14 @@ export class MenuBarComponent implements OnInit {
     };
   }
 
+  /**
+   * Method used after the "Show grid" or "Hide grid" button is pressed
+   * 
+   * Change the button text ("Show grid" => "Hide grid" or "Hide grid" => "Show grid")
+   * And call the shoxGrid method from image
+   * 
+   * @see image.showGrid
+   */
   showGrid() {
     this.drawArea.getImageComponent().showGrid();
     if (this.labels.view.showGrid === 'Show grid') {

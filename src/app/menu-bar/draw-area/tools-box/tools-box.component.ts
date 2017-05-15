@@ -12,14 +12,33 @@ export class ToolsBoxComponent implements OnInit {
 
   constructor() { }
 
+  /**
+   * Called when page is initialised
+   * 
+   * Select tool translate just after the page is loaded
+   */
   ngOnInit() {
     this.selectedTool = 'translate';
   }
 
+  /**
+   * selectedTool getter
+   * 
+   * @return selectedTool
+   */
   getSelectedTool() {
     return this.selectedTool;
   }
 
+  /**
+   * selectedTool setter
+   * 
+   * Set a tool as selected
+   * Change pressed button style
+   * 
+   * @param {string} tool - the tool to set
+   * @param {Event} event - event to see if a button has been pressed and which one
+   */
   private setSelectedTool(tool: string, event: Event) {
     this.selectedTool = tool;
     if (!(this.lastPressedButton == null)) {
